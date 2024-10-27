@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- In base.html, add this in the <head> section -->
+    <link rel="preload" href="{{ url_for('static', filename='fonts/test.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ url_for('static', filename='fonts/projecttitle.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ url_for('static', filename='fonts/Anito.ttf') }}" as="font" type="font/ttf" crossorigin>
 </head>
 <body>
     

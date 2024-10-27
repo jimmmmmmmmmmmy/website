@@ -1,18 +1,28 @@
+
 @font-face {
     font-family: "Title";
     src: url("../fonts/test.ttf") format("truetype");
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: "ProjectTitleFont";
     src: url("../fonts/projecttitle.ttf") format("truetype");
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
 }
-
 
 @font-face {
     font-family: "ProjDescrip";
     src: url("../fonts/Anito.ttf") format("truetype");
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
 }
+
 
 body {
     font-family: "ProjDescrip";
@@ -26,6 +36,11 @@ body {
     user-select: none,
     
 }
+.fonts-loaded body {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
 .container {
     max-width: 600px;
     padding: 20px;
