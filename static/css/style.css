@@ -82,6 +82,7 @@ h2 {
     color: #555;
 }
 .project-info h2 {
+    font-family: 'ProjectTitleFont';
     margin: 0;
     font-size: 18px;
     color: #333;
