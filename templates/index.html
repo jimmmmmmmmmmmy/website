@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}James Liu | Portfolio{% endblock %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="preview-container" id="previewContainer"></div>
+
+<div class="container" id="projectsContainer" style="padding-top: 200px">
+    <h1>James Liu</h1>
+    <a href="resume" class="resume-button">Resume</a>
+
+    
+    
+    {% for project in projects %}
+    <div class="project" data-image="{{ project.image }}">
+        <div class="project-info"  onclick="window.location.href='{{ project.link }}'">
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.description }}</p>
+        </div>
+        
+    </div>
+    
+    {% endfor %}
+
+    
+</div>
+<p class="subtitle">
+    <a href="mailto:liujame@oregonstate.edu" class="email-link"> Contact</a>
+
+</p>
+<!--
+<p class="subtitle"><span style="font-size: 18px;">*</span>A list of ongoing projects</p>
+-->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projects = document.querySelectorAll('.project');
+            const previewContainer = document.getElementById('previewContainer');
+            const projectsContainer = document.querySelector('.container');
+            const workHeading = document.querySelector('h1');
+            const imageCache = new Map();
+            let currentImage = null;
+
+            function updatePreviewHeight() {
+                const headingRect = workHeading.getBoundingClientRect();
+                const topMargin = 20;
+                const height = headingRect.top - topMargin;
+                
+                previewContainer.style.height = `${height}px`;
+                previewContainer.style.top = `${topMargin}px`;
+
+                const style = document.createElement('style');
+                style.textContent = `
+                    .preview-container img {
+                        max-height: ${height}px !important;
+                        width: auto;
+                        object-fit: contain;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            updatePreviewHeight();
+            window.addEventListener('resize', updatePreviewHeight);
+
+            function preloadImages() {
+                projects.forEach(project => {
+                    const imageUrl = project.dataset.image;
+                    if (imageUrl && !imageCache.has(imageUrl)) {
+                        const img = new Image();
+                        img.src = imageUrl;
+                        imageCache.set(imageUrl, img);
+                        
+                        img.onload = () => {
+                            imageCache.set(imageUrl, img);
+                        };
+                    }
+                });
+            }
+
+            function showPreview(imageUrl) {
+                if (!imageUrl) return;
+
+                if (imageCache.has(imageUrl)) {
+                    const cachedImg = imageCache.get(imageUrl);
+                    if (cachedImg.complete) {
+                        previewContainer.innerHTML = '';
+                        previewContainer.appendChild(cachedImg.cloneNode());
+                        previewContainer.style.opacity = '1';
+                        currentImage = imageUrl;
+                        return;
+                    }
+                }
+
+                const newImg = new Image();
+                newImg.onload = () => {
+                    if (currentImage === imageUrl) {
+                        previewContainer.innerHTML = '';
+                        previewContainer.appendChild(newImg);
+                        previewContainer.style.opacity = '1';
+                        imageCache.set(imageUrl, newImg);
+                    }
+                };
+                newImg.src = imageUrl;
+                currentImage = imageUrl;
+            }
+
+            function hidePreview() {
+                previewContainer.style.opacity = '0';
+                currentImage = null;
+            }
+
+            projects.forEach(project => {
+                project.addEventListener('mouseenter', function() {
+                    const imageUrl = this.dataset.image;
+                    showPreview(imageUrl);
+                });
+            });
+
+            projectsContainer.addEventListener('mouseleave', hidePreview);
+
+            document.addEventListener('mouseleave', function(e) {
+                if (e.clientY <= 0 || e.clientY >= window.innerHeight || 
+                    e.clientX <= 0 || e.clientX >= window.innerWidth) {
+                    hidePreview();
+                }
+            });
+
+            preloadImages();
+        });
+    </script>
+{% endblock %}

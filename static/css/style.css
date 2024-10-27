@@ -1,0 +1,185 @@
+@font-face {
+    font-family: "Title";
+    src: url("../fonts/test.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "ProjectTitleFont";
+    src: url("../fonts/projecttitle.ttf") format("truetype");
+}
+
+
+@font-face {
+    font-family: "ProjDescrip";
+    src: url("../fonts/Anito.ttf") format("truetype");
+}
+
+body {
+    font-family: "ProjDescrip";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 125%;
+    background-color: #FFFBF0;
+    user-select: none,
+    
+}
+.container {
+    max-width: 600px;
+    padding: 20px;
+    font-size: 133%;
+    background-color: #FFFBF0;
+}
+h1 {
+    font-family: 'Title';
+    text-align: center;
+    color: #210c0c;
+    font-size: 133%;
+    padding: 10px;
+    
+}
+h2 {
+    font-family: 'ProjectTitleFont';
+    text-align: left;
+    color: #7d7d7d;
+    font-size: 133%;
+}
+
+.notebook-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: black;
+    font-weight: bold;
+    background-color: None;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: none;
+    height: 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;  /* Remove underline from link */
+}
+
+.project {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 133%;
+}
+.project-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-weight: bold;
+    color: #555;
+}
+.project-info h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    user-select: none
+    
+}
+.project-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #777;
+    
+}
+.subtitle {
+    font-family: 'ProjectTitleFont';
+    text-align: center;
+    color: #210c0c;
+    margin-top: 0px;
+    font-size: 80%;
+}
+.resume-button {
+    font-family: 'ProjectTitleFont';
+    text-align: center;
+    color: #210c0c;
+    text-decoration: none;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 80%;
+}
+
+.email-link {
+    text-decoration: none;
+    color: #210c0c;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+}
+
+.preview-container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer
+}
+
+.preview-container img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer
+}
+
+.project {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 133%;
+    cursor: pointer;
+}
+
+.project2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 133%;
+}
+
+.project:hover {
+    transform: translateX(1px);
+}
+
+.project-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #210c0c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: "ProjDescrip";
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.project-button:hover {
+    background-color: #3a1515;
+}
+
+.footnote {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+}

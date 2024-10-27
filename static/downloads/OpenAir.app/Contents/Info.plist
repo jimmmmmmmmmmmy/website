@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>OpenAir</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+				<string>fold</string>
+				<string>disk</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>OpenAir</string>
+	<key>CFBundleIconFile</key>
+	<string>PythonApplet.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.github.jimmmmmmmmmmmy</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>OpenAir</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>LSHasLocalizedDisplayName</key>
+	<false/>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.13</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSAppleScriptEnabled</key>
+	<false/>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright not specified</string>
+	<key>NSLocationUsageDescription</key>
+	<string>OpenAir needs your location to show air quality data for your area.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>OpenAir needs your location to show air quality data for your area.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>PyMainFileNames</key>
+	<array>
+		<string>__boot__</string>
+	</array>
+	<key>PyOptions</key>
+	<dict>
+		<key>alias</key>
+		<false/>
+		<key>argv_emulation</key>
+		<true/>
+		<key>emulate_shell_environment</key>
+		<false/>
+		<key>no_chdir</key>
+		<false/>
+		<key>prefer_ppc</key>
+		<false/>
+		<key>site_packages</key>
+		<false/>
+		<key>use_faulthandler</key>
+		<false/>
+		<key>use_pythonpath</key>
+		<false/>
+		<key>verbose</key>
+		<false/>
+	</dict>
+	<key>PyResourcePackages</key>
+	<array/>
+	<key>PyRuntimeLocations</key>
+	<array>
+		<string>@executable_path/../Frameworks/Python.framework/Versions/3.11/Python</string>
+	</array>
+	<key>PythonInfoDict</key>
+	<dict>
+		<key>PythonExecutable</key>
+		<string>/Users/jamesliu/Portfolio Projects/AQI app/new_venv/bin/python3</string>
+		<key>PythonLongVersion</key>
+		<string>3.11.5 (v3.11.5:cce6ba91b3, Aug 24 2023, 10:50:31) [Clang 13.0.0 (clang-1300.0.29.30)]</string>
+		<key>PythonShortVersion</key>
+		<string>3.1</string>
+		<key>py2app</key>
+		<dict>
+			<key>alias</key>
+			<false/>
+			<key>template</key>
+			<string>app</string>
+			<key>version</key>
+			<string>0.28.8</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

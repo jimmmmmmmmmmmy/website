@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Studies | James Liu</title>
+    <style>  
+        /* Font declarations */
+    @font-face {
+    font-family: "Title";
+    src: url("{{ url_for('static', filename='fonts/test.ttf') }}") format("truetype");
+    font-display: swap;
+    }
+
+    @font-face {
+        font-family: "ProjectTitleFont";
+        src: url("static/fonts/NIS-Heisei-Mincho-W3.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: "ProjDescrip";
+        src: url("../fonts/Anito.ttf") format("truetype");
+    }
+    /* Reset default styles */
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Ensure proper document flow */
+    html {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        min-height: 100%;
+        position: relative;
+        background-color: #FFFBF0;
+        /* Remove margin auto and use padding instead */
+        padding: 2rem;
+        overflow-x: hidden;
+    }
+
+    /* Main content wrapper */
+    .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        /* Prevent content from escaping */
+        position: relative;
+    }
+
+    h1 {
+        font-family: "Title";
+        text-align: center;
+        color: #210c0c;
+        font-size: 2rem;
+        padding: 1rem;
+        width: 100%;
+        /* Ensure header stays in flow */
+        position: relative;
+    }
+    
+    .video-container {
+        width: 100%;
+        max-width: 800px;
+        /* Use padding instead of margin for consistent spacing */
+        padding: 0rem;
+        /* Ensure container stays in flow */
+        position: relative;
+    }
+        
+    video {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* Prevent video from creating layout shifts */
+        position: relative;
+    }
+
+
+
+    /* Media query for responsive design */
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+        
+        .video-container {
+            padding: 0.5rem;
+        }
+    }
+
+    .notebook-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: black;
+        font-weight: bold;
+        font-family: "Title";
+        background-color: None;
+        padding: 5px 15px;
+        border-radius: 20px;
+        border: none;
+        height: 32px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;  /* Remove underline from link */
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <h1>Visual Studies</h1>
+
+        <div class="content-wrapper">
+            
+            <a href="artnotebook" class="notebook-button">
+                <img src="{{ url_for('static', filename='images/Jupyter_logo.svg') }}" class="icon">
+            </a>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="/static/videos/wave20.mp4" type="video/mp4">
+                mp4 not loading :/
+            </video>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="/static/videos/waves4.mp4" type="video/mp4">
+                mp4 not loading :/
+            </video>
+        </div>
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source src="/static/videos/wave14.mp4" type="video/mp4">
+                    mp4 not loading :/
+                </video>
+            </div>
+
+
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="/static/videos/waves16.mp4" type="video/mp4">
+                mp4 not loading :/
+            </video>
+        </div>
+
+        <br><br><br><br>
+        <div class="content-wrapper">
+            
+            <a href="/" class="notebook-button">
+                James Liu
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>
