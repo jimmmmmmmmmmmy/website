@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, send_file
+from flask import Flask, render_template, redirect, send_file, send_from_directory
 import os
 
 app = Flask(__name__)
@@ -64,18 +64,15 @@ def resume():
 
 
 @app.route('/downloads/AQIDisplay.zip')
-def download_aqidisplay():
+def download_file():
     try:
-        path = os.path.join(app.root_path, 'static', 'downloads', 'AQIdisplay.zip')
-        return send_file(
-            path,
-            as_attachment=True,
-            download_name='AQIdisplay.zip',
-            mimetype='application/zip'
+        return send_from_directory(
+            'static/downloads',
+            'AQIDisplay.zip',
+            as_attachment=True
         )
     except Exception as e:
-        # Log the error
-        return "Sorry, the download is currently unavailable.", 404
+        return "Sorry, the download is currently unavailable."
 
 if __name__ == '__main__':
     app.run(debug=True)
