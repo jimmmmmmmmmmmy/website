@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, send_file
+import os
 
 app = Flask(__name__)
 
@@ -62,14 +63,14 @@ def resume():
 
 
 
-@app.route('/download/aqidisplay')
-def download_openair():
+@app.route('/downloads/AQIDisplay.zip')
+def download_aqidisplay():
     try:
         path = os.path.join(app.root_path, 'static', 'downloads', 'AQIdisplay.zip')
         return send_file(
             path,
             as_attachment=True,
-            download_name='AQIdisplay.app.zip',
+            download_name='AQIdisplay.zip',
             mimetype='application/zip'
         )
     except Exception as e:
