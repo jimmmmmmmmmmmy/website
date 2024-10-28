@@ -61,8 +61,6 @@ def oa_project():
 def resume():
     return redirect('resume.html')
 
-
-
 @app.route('/downloads/AQIDisplay.zip')
 def download_file():
     try:
