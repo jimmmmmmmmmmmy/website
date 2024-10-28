@@ -37,16 +37,7 @@
 
 
     <script>
-            if ("fonts" in document) {
-        Promise.all([
-            document.fonts.load('1em Title'),
-            document.fonts.load('1em ProjectTitleFont'),
-            document.fonts.load('1em ProjDescrip')
-        ]).then(function() {
-            document.documentElement.classList.add('fonts-loaded');
-        });
-    }
-    
+
         document.addEventListener('DOMContentLoaded', function() {
             const projects = document.querySelectorAll('.project');
             const previewContainer = document.getElementById('previewContainer');
