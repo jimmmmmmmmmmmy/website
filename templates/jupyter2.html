@@ -176,19 +176,19 @@
 
         <div class="video-container" data-video="waves4">
             <video autoplay muted loop>
-                <source src="/static/videos/waves4.mp4" type="video/mp4">
+                <source data-src="/static/videos/waves4.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-container" data-video="wave14">
             <video autoplay muted loop>
-                <source src="/static/videos/wave14.mp4" type="video/mp4">
+                <source data-src="/static/videos/wave14.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-container" data-video="waves16">
             <video autoplay muted loop>
-                <source src="/static/videos/waves16.mp4" type="video/mp4">
+                <source data-src="/static/videos/waves16.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -202,7 +202,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.video-button');
             const containers = document.querySelectorAll('.video-container');
-
+    
+            // Function to load video
+            function loadVideo(container) {
+                const video = container.querySelector('video');
+                const source = video.querySelector('source');
+                
+                if (!source.src && source.dataset.src) {
+                    source.src = source.dataset.src;
+                    video.load();
+                }
+                video.play();
+            }
+    
+            // Load the first video initially
+            const firstContainer = document.querySelector('.video-container.active');
+            if (firstContainer) {
+                loadVideo(firstContainer);
+            }
+    
             buttons.forEach(button => {
                 button.addEventListener('click', () => {
                     const videoId = button.dataset.video;
@@ -215,8 +233,7 @@
                     containers.forEach(container => {
                         if (container.dataset.video === videoId) {
                             container.classList.add('active');
-                            const video = container.querySelector('video');
-                            if (video.paused) video.play();
+                            loadVideo(container);
                         } else {
                             container.classList.remove('active');
                             const video = container.querySelector('video');
@@ -231,13 +248,9 @@
     document.documentElement.classList.add('fonts-loading');
 
     const titleFont = new FontFaceObserver('Title');
-    const projectTitleFont = new FontFaceObserver('ProjectTitleFont');
-    const projDescripFont = new FontFaceObserver('ProjDescrip');
 
     Promise.all([
         titleFont.load(),
-        projectTitleFont.load(),
-        projDescripFont.load()
     ]).then(() => {
         document.documentElement.classList.remove('fonts-loading');
         document.documentElement.classList.add('fonts-loaded');
