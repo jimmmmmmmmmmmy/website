@@ -13,10 +13,13 @@
     src: url("{{ url_for('static', filename='fonts/test.woff2') }}") format("woff2");
     font-display: swap;
     }
-    .fonts-loading body {
+    .fonts-loading h1,
+    .fonts-loading .notebook-button {
         opacity: 0;
     }
-    .fonts-loaded body {
+
+    .fonts-loaded h1,
+    .fonts-loaded .notebook-button {
         opacity: 1;
         transition: opacity 0.3s ease;
     }
@@ -111,59 +114,119 @@
         transition: all 0.2s ease;
         text-decoration: none;  /* Remove underline from link */
     }
+    .video-menu {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
 
+        .video-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            color: #210c0c;
+            cursor: pointer;
+            font-family: "Title";
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-button.active {
+            opacity: 1;
+            border-bottom: 2px solid #210c0c;
+        }
+
+        .video-container {
+            display: none;
+        }
+
+        .video-container.active {
+            display: block;
+        }
     </style>
 </head>
-
 <body>
     <div class="content-wrapper">
         <h1>Visual Studies</h1>
+        
 
-        <div class="content-wrapper">
-            
-            <a href="artnotebook" class="notebook-button">
-                <img src="{{ url_for('static', filename='images/Jupyter_logo.svg') }}" class="icon">
-            </a>
+        <!-- Add video menu -->
+        <div class="video-menu" style="margin-top: -10px; margin-bottom: -10px;">
+            <button class="video-button active" data-video="wave20">Wave 1</button>
+            <button class="video-button" data-video="waves4">Wave 2</button>
+            <button class="video-button" data-video="wave14">Wave 3</button>
+            <button class="video-button" data-video="waves16">Wave 4</button>
         </div>
 
-        <div class="video-container">
+
+        <!-- Modify video containers -->
+        <div class="video-container active" data-video="wave20" >
             <video autoplay muted loop>
                 <source src="/static/videos/wave20.mp4" type="video/mp4">
-                mp4 not loading :/
             </video>
+
+            <div class="content-wrapper" style="margin-top: 30px;">
+                <a href="artnotebook" class="notebook-button">
+                    <img src="{{ url_for('static', filename='images/Jupyter_logo.svg') }}" class="icon">
+                </a>
+            </div>
         </div>
 
-        <div class="video-container">
+        <div class="video-container" data-video="waves4">
             <video autoplay muted loop>
                 <source src="/static/videos/waves4.mp4" type="video/mp4">
-                mp4 not loading :/
             </video>
         </div>
-            <div class="video-container">
-                <video autoplay muted loop>
-                    <source src="/static/videos/wave14.mp4" type="video/mp4">
-                    mp4 not loading :/
-                </video>
-            </div>
 
+        <div class="video-container" data-video="wave14">
+            <video autoplay muted loop>
+                <source src="/static/videos/wave14.mp4" type="video/mp4">
+            </video>
+        </div>
 
-        <div class="video-container">
+        <div class="video-container" data-video="waves16">
             <video autoplay muted loop>
                 <source src="/static/videos/waves16.mp4" type="video/mp4">
-                mp4 not loading :/
             </video>
         </div>
 
-        <br><br><br><br>
-        <div class="content-wrapper">
-            
-            <a href="/" class="notebook-button">
-                James Liu
-            </a>
-        </div>
+
+
+
 
     </div>
-</body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.video-button');
+            const containers = document.querySelectorAll('.video-container');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const videoId = button.dataset.video;
+                    
+                    // Update buttons
+                    buttons.forEach(b => b.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Update videos
+                    containers.forEach(container => {
+                        if (container.dataset.video === videoId) {
+                            container.classList.add('active');
+                            const video = container.querySelector('video');
+                            if (video.paused) video.play();
+                        } else {
+                            container.classList.remove('active');
+                            const video = container.querySelector('video');
+                            video.pause();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 <script>
     document.documentElement.classList.add('fonts-loading');
 
