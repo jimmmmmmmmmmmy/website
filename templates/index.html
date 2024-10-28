@@ -134,4 +134,30 @@
             preloadImages();
         });
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.3.0/fontfaceobserver.js"></script>
+<script>
+    // Start by marking fonts as loading (add this line!)
+    document.documentElement.classList.add('fonts-loading');
+
+    // Watch for all your custom fonts
+    const titleFont = new FontFaceObserver('Title');
+    const projectTitleFont = new FontFaceObserver('ProjectTitleFont');
+    const projDescripFont = new FontFaceObserver('ProjDescrip');
+
+    // Wait for all fonts to load
+    Promise.all([
+        titleFont.load(),
+        projectTitleFont.load(),
+        projDescripFont.load()
+    ]).then(() => {
+        // When all fonts are ready:
+        document.documentElement.classList.remove('fonts-loading');
+        document.documentElement.classList.add('fonts-loaded');
+    }).catch(err => {
+        console.warn('Some fonts failed to load:', err);
+        // Remove loading class anyway so content becomes visible
+        document.documentElement.classList.remove('fonts-loading');
+    });
+</script>
 {% endblock %}
