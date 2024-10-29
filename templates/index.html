@@ -153,24 +153,50 @@
 <script>
     document.documentElement.classList.add('fonts-loading');
 
-    // Watch for custom fonts
     const titleFont = new FontFaceObserver('Title');
     const projectTitleFont = new FontFaceObserver('ProjectTitleFont');
     const projDescripFont = new FontFaceObserver('ProjDescrip');
 
-    // Wait for all fonts to load
+    // Add a timeout to prevent infinite loading state
+    const timeout = 2000; // 2 seconds timeout
+
     Promise.all([
-        titleFont.load(),
-        projectTitleFont.load(),
-        projDescripFont.load()
+        Promise.race([
+            titleFont.load(),
+            new Promise((resolve, reject) => {
+                setTimeout(reject, timeout);
+            })
+        ]),
+        Promise.race([
+            projectTitleFont.load(),
+            new Promise((resolve, reject) => {
+                setTimeout(reject, timeout);
+            })
+        ]),
+        Promise.race([
+            projDescripFont.load(),
+            new Promise((resolve, reject) => {
+                setTimeout(reject, timeout);
+            })
+        ])
     ]).then(() => {
-        // When all fonts are ready:
-        document.documentElement.classList.remove('fonts-loading');
-        document.documentElement.classList.add('fonts-loaded');
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-loaded');
+        });
     }).catch(err => {
         console.warn('Some fonts failed to load:', err);
-        // Remove loading class anyway so content becomes visible
-        document.documentElement.classList.remove('fonts-loading');
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-error');
+        });
     });
+
+    setTimeout(() => {
+        if (document.documentElement.classList.contains('fonts-loading')) {
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-error');
+        }
+    }, timeout + 100);
 </script>
 {% endblock %}
