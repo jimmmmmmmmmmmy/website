@@ -139,11 +139,18 @@
         }
 
         .video-container {
-            display: none;
+            opacity: 0;  /* Start with 0 opacity */
+            visibility: hidden;  /* Hide container initially */
+            transition: opacity 1s ease, visibility 1s ease;  /* Add transitions */
+            height: 0;  /* Collapse container when not active */
+            overflow: hidden;
         }
 
         .video-container.active {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            height: auto;  /* Expand container when active */
+        }
         }
     </style>
 </head>
@@ -154,7 +161,7 @@
 
         <!-- Add video menu -->
         <div class="video-menu" style="margin-top: -10px; margin-bottom: -10px;">
-            <button class="video-button active" data-video="waves20">Wave 20</button>
+            <button class="video-button" data-video="waves20">Wave 20</button>
             <button class="video-button" data-video="waves4">Wave 4</button>
             <button class="video-button" data-video="wave14">Circular 14</button>
             <button class="video-button" data-video="waves16">Wave 16</button>
@@ -199,11 +206,10 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.video-button');
             const containers = document.querySelectorAll('.video-container');
-    
-            // Function to load video
+
             function loadVideo(container) {
                 const video = container.querySelector('video');
                 const source = video.querySelector('source');
@@ -212,15 +218,19 @@
                     source.src = source.dataset.src;
                     video.load();
                 }
-                video.play();
+                
+                // Start playing after a short delay to allow transition
+                setTimeout(() => {
+                    video.play();
+                }, 100);
             }
-    
+
             // Load the first video initially
             const firstContainer = document.querySelector('.video-container.active');
             if (firstContainer) {
                 loadVideo(firstContainer);
             }
-    
+
             buttons.forEach(button => {
                 button.addEventListener('click', () => {
                     const videoId = button.dataset.video;
@@ -229,12 +239,17 @@
                     buttons.forEach(b => b.classList.remove('active'));
                     button.classList.add('active');
                     
-                    // Update videos
+                    // Update videos with transition
                     containers.forEach(container => {
                         if (container.dataset.video === videoId) {
-                            container.classList.add('active');
+                            // First load the video
                             loadVideo(container);
+                            // Then make it visible
+                            requestAnimationFrame(() => {
+                                container.classList.add('active');
+                            });
                         } else {
+                            // Fade out inactive containers
                             container.classList.remove('active');
                             const video = container.querySelector('video');
                             video.pause();

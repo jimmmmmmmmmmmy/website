@@ -25,7 +25,6 @@
 
 
 body {
-    
     font-family: "ProjDescrip";
     display: flex;
     justify-content: center;
@@ -34,16 +33,17 @@ body {
     margin: 0;
     font-size: 125%;
     background-color: #FFFBF0;
-    user-select: none,
+    user-select: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
     
 }
 .fonts-loading body {
-    visibility: hidden;
+    opacity: 0.98; 
 }
 
 .fonts-loaded body {
-    visibility: visible;
-    animation: fadeIn 0.5s ease;
+    opacity: 1;
 }
 
 @keyframes fadeIn {
