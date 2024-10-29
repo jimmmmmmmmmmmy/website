@@ -37,9 +37,16 @@
 -->
 
 
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if the device is mobile
+        const isMobile = () => {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                window.matchMedia("(max-width: 768px)").matches;
+        };
 
-        document.addEventListener('DOMContentLoaded', function() {
+        // Only initialize preview functionality if not on mobile
+        if (!isMobile()) {
             const projects = document.querySelectorAll('.project');
             const previewContainer = document.getElementById('previewContainer');
             const projectsContainer = document.querySelector('.container');
@@ -133,14 +140,20 @@
             });
 
             preloadImages();
-        });
+        } else {
+            // Optional: Add mobile-specific behavior here
+            const previewContainer = document.getElementById('previewContainer');
+            if (previewContainer) {
+                previewContainer.style.display = 'none';
+            }
+        }
+    });
     </script>
 
 <script>
-    // Start by marking fonts as loading (add this line!)
     document.documentElement.classList.add('fonts-loading');
 
-    // Watch for all your custom fonts
+    // Watch for custom fonts
     const titleFont = new FontFaceObserver('Title');
     const projectTitleFont = new FontFaceObserver('ProjectTitleFont');
     const projDescripFont = new FontFaceObserver('ProjDescrip');
