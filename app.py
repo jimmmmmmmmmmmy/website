@@ -62,9 +62,11 @@ def oa_project():
 def resume():
     return render_template('resume.html')
 
-@app.route('/static/pdfs/Resume.pdf')
+@app.route('/pdfs/Resume.pdf')
 def serve_resume_pdf():
-    return send_from_directory('static/pdfs', 'Resume.pdf')
+    return send_from_directory(
+        'static/pdfs', 
+        'Resume.pdf')
 
 @app.route('/downloads/AQIDisplay.zip')
 def download_file():
