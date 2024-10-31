@@ -13,10 +13,11 @@
                 <p>It seems you don't have a PDF plugin for this browser.
                    You can:</p>
                 <ul>
-                    <li><a href="{{ url_for('static', filename='pdfs/Resume.pdf') }}" download>
+                    
+                    <li><a href="{{ url_for('serve_resume_pdf') }}" download>
                         Download the PDF
                     </a></li>
-                    <li><a href="{{ url_for('static', filename='pdfs/Resume.pdf') }}" target="_blank">
+                    <li><a href="{{ url_for('serve_resume_pdf') }}" target="_blank">
                         View it in a new tab
                     </a></li>
                 </ul>
