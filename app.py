@@ -3,6 +3,7 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     projects = [
@@ -59,7 +60,11 @@ def oa_project():
 
 @app.route('/resume')
 def resume():
-    return redirect('resume.html')
+    return render_template('resume.html')
+
+@app.route('/static/pdfs/Resume.pdf')
+def serve_resume_pdf():
+    return send_from_directory('static/pdfs', 'Resume.pdf')
 
 @app.route('/downloads/AQIDisplay.zip')
 def download_file():
